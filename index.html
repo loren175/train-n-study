@@ -13,6 +13,8 @@
     <title>Train n' Study</title>
 
     <link rel="stylesheet" href="./style.css" />
+
+    <script src="./js/script.js" defer></script>
   </head>
   <body>
     <header>Train n' Study</header>
@@ -21,7 +23,12 @@
       <section class="border">
         <div id="container">
           <h2>Adicione o que deseja estudar:</h2>
-          <input placeholder="Ex: JavaScript" type="text" />
+          <input id="input" placeholder="Ex: JavaScript" type="text" />
+          <br>
+          <br>
+          <button type="submit" onclick="addStudy()" class="submit">
+            <span class="text-submit">Enviar</span> <i class="icon">✓</i>
+          </button>
         </div>
       </section>
 
@@ -33,7 +40,8 @@
           <ul class="utils-list">
             <li>
               <a target="_blank" href="https://uigradients.com/">
-                <img class="gradients"
+                <img
+                  class="gradients"
                   src="https://uigradients.com/static/images/uigradients.jpg"
                   alt=""
                 />
@@ -42,7 +50,8 @@
 
             <li>
               <a target="_blank" href="https://iconmonstr.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://cdns.iconmonstr.com/wp-content/releases/preview/2016/240/iconmonstr-logo-1.png"
                   alt=""
                 />
@@ -51,43 +60,51 @@
 
             <li>
               <a target="_blank" href="https://phosphoricons.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://raw.githubusercontent.com/phosphor-icons/phosphor-icons/HEAD/meta/phosphor-mark-tight-yellow.png"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
               <a target="_blank" href="https://fonts.google.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://pbs.twimg.com/profile_images/1366808543773384704/8qFXRmFc_400x400.png"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.beecrowd.com.br/judge/en/login">
-                <img class="other-utils"
+              <a
+                target="_blank"
+                href="https://www.beecrowd.com.br/judge/en/login"
+              >
+                <img
+                  class="other-utils"
                   src="https://camo.githubusercontent.com/b21d347661a71f44bb85cb2b136935a8ebe9ccb82ad898022d75e9a6a833ca86/68747470733a2f2f7777772e62656563726f77642e636f6d2e62722f6a756467652f66617669636f6e2e69636f3f31363335303937303336"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
               <a target="_blank" href="https://100dayscss.com">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
               <a target="_blank" href="https://www.fontbrief.com/fontbrief">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="data:image/png;base64,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"
                   alt=""
                 />
@@ -96,7 +113,8 @@
 
             <li>
               <a target="_blank" href="https://unsplash.com/pt-br">
-                <img class="gradients"
+                <img
+                  class="gradients"
                   src="https://i.pinimg.com/originals/81/7b/3a/817b3a9b71cdb47c19f415f1a43db6f3.jpg"
                   alt=""
                 />
@@ -105,7 +123,8 @@
 
             <li>
               <a target="_blank" href="https://www.codewars.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://docs.codewars.com/logo.svg"
                   alt=""
                 />
@@ -114,7 +133,8 @@
 
             <li>
               <a target="_blank" href="https://www.hackerrank.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://repository-images.githubusercontent.com/231893793/cec60480-04a9-11eb-80c4-df7359d94047"
                   alt=""
                 />
@@ -123,32 +143,33 @@
 
             <li>
               <a target="_blank" href="https://www.openpeeps.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://assets.website-files.com/5e51c674258ffe10d286d30a/5e535367f5fa1a2eedf59e1d_peep-23.svg"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
               <a target="_blank" href="https://www.useblackbox.io/search">
-                <img class="gradients"
+                <img
+                  class="gradients"
                   src="https://www.useblackbox.io/style/images/Group-4.png"
                   alt=""
                 />
               </a>
             </li>
-            
+
             <li>
               <a target="_blank" href="https://monkeytype.com/">
-                <img class="other-utils"
+                <img
+                  class="other-utils"
                   src="https://www.giantbomb.com/a/uploads/original/48/487882/3224993-favicon.png"
                   alt=""
                 />
               </a>
             </li>
-        
-          
           </ul>
         </div>
       </section>
@@ -160,97 +181,213 @@
 
           <ul class="design-list">
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/Coj9xTypHU1/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Grid</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/Coj9xTypHU1/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Grid</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CmEOUgoDhHt/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Button Interaction</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CmEOUgoDhHt/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Button Interaction</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CoHzzgVpljh/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Credit Card Animation</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CoHzzgVpljh/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Credit Card Animation</span>
               </a>
-            
             </li>
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CoejGjnA8n4/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Search Button</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CoejGjnA8n4/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Search Button</span>
               </a>
-            
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CocCSoUPC6K/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Pre-loader</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CocCSoUPC6K/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Pre-loader</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/Cm6nBgrj8xH/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Send Button</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/Cm6nBgrj8xH/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Send Button</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CnjAsxNKzge/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Responsive Grid</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CnjAsxNKzge/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Responsive Grid</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CoRNEU9j0P4/">
-              <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Search Bar</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CoRNEU9j0P4/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Search Bar</span>
               </a>
             </li>
-            
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/Cnrf3k7Llpj/">
-                <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >CSS Rule</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/Cnrf3k7Llpj/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">CSS Rule</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CoUYxUrPkZm/">
-                <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Invalid input Shake</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CoUYxUrPkZm/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Invalid input Shake</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/Cl8YRt6pE_Z/">
-                <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Responsive NavBar</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/Cl8YRt6pE_Z/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Responsive NavBar</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CmTKx8Xjt5H/">
-                <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Card Hover Effect</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CmTKx8Xjt5H/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Card Hover Effect</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CnHJQMguIch/">
-                <img class="insta" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt=""> <span class="span-style" >Button VALORANT</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CnHJQMguIch/"
+              >
+                <img
+                  class="insta"
+                  src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+                  alt=""
+                />
+                <span class="span-style">Button VALORANT</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CnrLWMIpmUG/">
-              <img class="insta" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png" alt=""> <span class="span-style" >Auto Complete</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CnrLWMIpmUG/"
+              >
+                <img
+                  class="insta"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
+                  alt=""
+                />
+                <span class="span-style">Auto Complete</span>
               </a>
             </li>
-            
+
             <li>
-              <a target="_blank" href="https://www.instagram.com/p/CoPPH5XPAR7/">
-              <img class="insta" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png" alt=""> <span class="span-style" >Jump to Section</span>  
+              <a
+                target="_blank"
+                href="https://www.instagram.com/p/CoPPH5XPAR7/"
+              >
+                <img
+                  class="insta"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
+                  alt=""
+                />
+                <span class="span-style">Jump to Section</span>
               </a>
             </li>
-            
           </ul>
         </div>
       </section>
@@ -258,7 +395,10 @@
       <section>
         <div id="study-list">
           <h2>Lista de estudos:</h2>
-          <p id="study"></p>
+          <br>
+          <p id="study">A lista está vazia.</p>
+          <br>
+          <button id="clear">Limpar</button>
         </div>
       </section>
     </main>

@@ -41,6 +41,18 @@ main {
   flex-direction: column;
 }
 
+input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #43e7ad;
+  outline: 0;
+  font-size: 1.3rem;
+  color: white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
 .border {
   color: white;
   background-image: linear-gradient(
@@ -129,6 +141,69 @@ section ul li:hover {
   left: 50px;
   top: 200px;
   color: white;
+  
+  animation: fromTop 0.7s backwards;
+  animation-delay: 0.6s;
+  transition: transform 0.3s;;
+}
+
+#study {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.submit {
+  position: relative;
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+  background-color: #202231;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: width .5s;
+  border-radius .5s;
+}
+
+.submit * {
+  position: aboslute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity .25s;
+}
+
+.icon {
+  opacity: 0;
+}
+
+.submit:focus {
+  width: 2rem;
+  background-color: #44c08a;
+  border-radius: 50%;
+}
+
+.submit:focus .text-submit {
+  opacity: 0;
+  display: none;
+}
+
+.submit:focus .icon {
+  opacity: 1;
+  transition-delay: .5s;
+}
+
+#clear {
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+  background-color: #202231;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* animation */
